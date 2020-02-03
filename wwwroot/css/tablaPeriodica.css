@@ -1,0 +1,128 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+/*Estilos de la tabla periodica*/
+.grid-container {
+    display: grid;
+    grid-template-columns: 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px;
+    justify-content: space-evenly;
+}
+
+.item {
+    border: 1px solid black;
+    flex-wrap: wrap;
+    margin-bottom: 6%;
+    height: 70px;
+}
+
+.item-title {
+    margin: 0 35%;
+}
+
+.item-number {
+    font-size: small;
+    margin-left: 2px;
+}
+
+.space-blank1 {
+    border: none;
+    grid-column: 2 / span 16;
+}
+
+.space-blank2 {
+    grid-column: 3 / span 11;
+}
+
+.space-blank-second-grid {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 2;
+}
+
+.item-name {
+    margin: 0;
+    font-size: x-small;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/*Estilos para la leyenda*/
+.leyenda-grid {
+    display: grid;
+    grid-template-columns: 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px 70px;
+    justify-content: space-evenly;
+}
+
+.leyenda-item {
+    border: 1px solid black;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    font-size: small;
+    margin-top: 1px;
+}
+
+.leyenda-item-header1 {
+    grid-column: 1 / span 10;
+}
+
+.leyenda-item-column-span-2 {
+    grid-column: auto / span 2;
+    height: 55px;
+    line-height: 55px;
+}
+
+.leyenda-item-header2 {
+    grid-column: 11 / span 2;
+    grid-row: 1 / 3;
+    height: auto;
+    line-height: 88px;
+}
+
+.leyenda-item-header3 {
+    grid-column: 13 / span 6;
+}
+/*Colores de la tabla*/
+.color-header-leyendas {
+    background-color: #DAD5D8;
+}
+
+.color-alcalinos {
+    background-color: #B89DC3;
+}
+
+.color-alcalinoterreos {
+    background-color: #D6A3C4;
+}
+
+.color-bloqueD {
+    background-color: #E9BD52;
+}
+
+.color-Lantanidos {
+    background-color: #DA9E67;
+}
+
+.color-actinidos {
+    background-color: #D3928B;
+}
+
+.color-otros-metales {
+    background-color: #F3DC2C;
+}
+
+.color-metaloides {
+    background-color: #D2DC5D;
+}
+
+.color-otros-no-metales {
+    background-color: #8EB88B;
+}
+
+.color-halogenos {
+    background-color: #A0CAC9;
+}
+
+.color-gases-nobles {
+    background-color: #9FC1E6;
+}

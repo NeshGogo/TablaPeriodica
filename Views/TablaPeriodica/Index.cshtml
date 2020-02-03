@@ -1,0 +1,58 @@
+﻿@model TablaPeriodica.Models.Elemento
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tabla Periodica</title>
+    <link href="~/css/tablaPeriodica.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="leyenda-grid">
+        <div class="leyenda-item leyenda-item-header1 color-header-leyendas">
+            <span>Metales</span>
+        </div>
+        <div class="leyenda-item leyenda-item-header2 color-metaloides">
+            <span>Metaloides</span>
+        </div>
+        <div class="leyenda-item leyenda-item-header3 color-header-leyendas">
+            <span>No Metales</span>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2 color-alcalinos">
+            <span>Alcalinos</span>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2 color-alcalinoterreos">
+            <span>Alcalinoterreos</span>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2 color-bloqueD" style="line-height:25px;">
+            <span>Metales de Transicion / Bloque D</span>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2" style="overflow: hidden;">
+            <div style="border-bottom: 1px solid black;" class="color-Lantanidos">
+                <span>Lantanidos</span>
+            </div>
+            <div class="color-actinidos">
+                <span>Actinodos</span>
+            </div>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2 color-otros-metales">
+            <span>Otros Metales</span>
+        </div>
+
+        <div class="leyenda-item leyenda-item-column-span-2 color-otros-no-metales">
+            <span>Otros No Metales</span>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2 color-halogenos">
+            <span>Halogenos</span>
+        </div>
+        <div class="leyenda-item leyenda-item-column-span-2 color-gases-nobles">
+            <span>Gases Nobles</span>
+        </div>
+    </div>
+</body>
+</html>
