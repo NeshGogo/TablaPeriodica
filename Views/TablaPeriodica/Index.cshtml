@@ -1,10 +1,10 @@
-﻿@model TablaPeriodica.Models.Elemento
+﻿@model List<TablaPeriodica.Models.Elemento>
 @{
     Layout = null;
+    string color = "";
 }
 
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -12,7 +12,102 @@
     <link href="~/css/tablaPeriodica.css" rel="stylesheet" />
 </head>
 <body>
+    <H1   style="font-size:50px; text-align:center; color:#E9BD52; text-decoration:underline">
+    Tabla Periodica de los Elementos Quimicos
+    </H1>
+    <br />
+    <div class="grid-container">
+        @foreach (var element in Model )
+        {
+            @switch (element.Category)
+            {
+                case CategorisEnum.Alcalinos:
+                    color = "color-alcalinos";
+                    break;
+                case CategorisEnum.Alcalinoterreos:
+                    color = "color-alcalinoterreos";
+                    break;
+                case CategorisEnum.BloqueD:
+                    color = "color-bloqueD";
+                    break;
+                case CategorisEnum.Lantanidos:
+                    color = "color-Lantanidos";
+                    break;
+                case CategorisEnum.Actinidos:
+                    color = "color-actinidos";
+                    break;
+                case CategorisEnum.OtrosMetales:
+                    color = "color-otros-metales";
+                    break;
+                case CategorisEnum.Metaloides:
+                    color = "color-metaloides";
+                    break;
+                case CategorisEnum.OtrosNoMetales:
+                    color = "color-otros-no-metales";
+                    break;
+                case CategorisEnum.Halogenos:
+                    color = "color-halogenos";
+                    break;
+                case CategorisEnum.GasesNobles:
+                    color = "color-gases-nobles";
+                    break;
+                default:
+                    color = "";
+                    break;
+            }
 
+             if (element.Id=="57")
+            {
+                break;
+            }
+
+            <div class="item @color">
+                <p class="item-number">@element.Id</p>
+                <h4 class="item-title">@element.Initials</h4>
+                <p class="item-name">@element.Name</p>
+            </div>
+
+            if (element.Id == "1")
+            {
+                <di class="space-blank1">
+                </di>
+            }
+            else if (element.Id  == "3" || element.Id  == "11")
+            {
+                <div class="space-blank2">
+
+                </div>
+            }
+        }
+    </div>
+    <br /> <br />
+           <div class="grid-container">
+               @foreach (var element in Model)
+               {
+                   int index = Model.IndexOf(element);
+
+                   if (element.Id == "57")
+                   {
+                       <div class="space-blank-second-grid"></div>
+                       color = "color-Lantanidos";
+                   }
+                   else if (element.Id == "89")
+                   {
+                       color = "color-actinidos";
+                   }
+
+                   if ((index>=90 && index<= 104) ||(index>=104 && index <= 143 ) )
+                   {
+                       <div class="item @color">
+                           <p class="item-number">@element.Id</p>
+                           <h4 class="item-title">@element.Initials</h4>
+                           <p class="item-name">@element.Name</p>
+                       </div>
+                   }
+               }
+           </div>
+
+    <br /> <br />
     <div class="leyenda-grid">
         <div class="leyenda-item leyenda-item-header1 color-header-leyendas">
             <span>Metales</span>
@@ -32,7 +127,7 @@
         <div class="leyenda-item leyenda-item-column-span-2 color-bloqueD" style="line-height:25px;">
             <span>Metales de Transicion / Bloque D</span>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2" style="overflow: hidden;">
+        <div class="leyenda-item leyenda-item-column-span-2" style="overflow: hidden; line-height: 30px;">
             <div style="border-bottom: 1px solid black;" class="color-Lantanidos">
                 <span>Lantanidos</span>
             </div>
