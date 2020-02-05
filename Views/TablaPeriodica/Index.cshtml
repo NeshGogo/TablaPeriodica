@@ -1,4 +1,4 @@
-﻿@model List<TablaPeriodica.Models.Elemento>
+﻿@model TablaPeriodica.Models.Elemento[]
 @{
     Layout = null;
     string color = "";
@@ -12,96 +12,103 @@
     <link href="~/css/tablaPeriodica.css" rel="stylesheet" />
 </head>
 <body>
-    <H1   style="font-size:50px; text-align:center; color:#E9BD52; text-decoration:underline">
-    Tabla Periodica de los Elementos Quimicos
+    <H1 style="font-size:50px; text-align:center; color:#E9BD52; text-decoration:underline">
+        Tabla Periodica de los Elementos Quimicos
     </H1>
     <br />
     <div class="grid-container">
-        @foreach (var element in Model )
+        @for (int i = 0; i < 90; i++)
         {
-            @switch (element.Category)
+
+            if (i < Model.Length)
             {
-                case CategorisEnum.Alcalinos:
-                    color = "color-alcalinos";
-                    break;
-                case CategorisEnum.Alcalinoterreos:
-                    color = "color-alcalinoterreos";
-                    break;
-                case CategorisEnum.BloqueD:
-                    color = "color-bloqueD";
-                    break;
-                case CategorisEnum.Lantanidos:
-                    color = "color-Lantanidos";
-                    break;
-                case CategorisEnum.Actinidos:
-                    color = "color-actinidos";
-                    break;
-                case CategorisEnum.OtrosMetales:
-                    color = "color-otros-metales";
-                    break;
-                case CategorisEnum.Metaloides:
-                    color = "color-metaloides";
-                    break;
-                case CategorisEnum.OtrosNoMetales:
-                    color = "color-otros-no-metales";
-                    break;
-                case CategorisEnum.Halogenos:
-                    color = "color-halogenos";
-                    break;
-                case CategorisEnum.GasesNobles:
-                    color = "color-gases-nobles";
-                    break;
-                default:
-                    color = "";
-                    break;
+                @switch (Model[i].Category)
+                {
+                    case CategorisEnum.Alcalinos:
+                        color = "color-alcalinos";
+                        break;
+                    case CategorisEnum.Alcalinoterreos:
+                        color = "color-alcalinoterreos";
+                        break;
+                    case CategorisEnum.BloqueD:
+                        color = "color-bloqueD";
+                        break;
+                    case CategorisEnum.Lantanidos:
+                        color = "color-Lantanidos";
+                        break;
+                    case CategorisEnum.Actinidos:
+                        color = "color-actinidos";
+                        break;
+                    case CategorisEnum.OtrosMetales:
+                        color = "color-otros-metales";
+                        break;
+                    case CategorisEnum.Metaloides:
+                        color = "color-metaloides";
+                        break;
+                    case CategorisEnum.OtrosNoMetales:
+                        color = "color-otros-no-metales";
+                        break;
+                    case CategorisEnum.Halogenos:
+                        color = "color-halogenos";
+                        break;
+                    case CategorisEnum.GasesNobles:
+                        color = "color-gases-nobles";
+                        break;
+                    default:
+                        color = "gray";
+                        break;
+                }
+
+                <div class="item @color" id="element @Model[i].Id">
+                    <p class="item-number">@Model[i].Id  || <span class="itemDelete" onclick="deleteElement('@Model[i].Id')">X</span></p>
+                    <h4 class="item-title">@Model[i].Initials</h4>
+                    <p class="item-name">@Model[i].Name</p>
+                </div>
+            }
+            else
+            {
+                <div class="item" style="background-color:gray;"></div>
             }
 
-             if (element.Id=="57")
-            {
-                break;
-            }
-
-            <div class="item @color">
-                <p class="item-number">@element.Id</p>
-                <h4 class="item-title">@element.Initials</h4>
-                <p class="item-name">@element.Name</p>
-            </div>
-
-            if (element.Id == "1")
+            if (i == 0)
             {
                 <di class="space-blank1">
                 </di>
             }
-            else if (element.Id  == "3" || element.Id  == "11")
+            else if (i == 3 || i == 11)
             {
                 <div class="space-blank2">
 
                 </div>
             }
+
         }
     </div>
     <br /> <br />
            <div class="grid-container">
-               @foreach (var element in Model)
+               @for (int i = 90; i < 120; i++)
                {
-                   int index = Model.IndexOf(element);
-
-                   if (element.Id == "57")
+                   if (i == 90)
                    {
                        <div class="space-blank-second-grid"></div>
-                       color = "color-Lantanidos";
-                   }
-                   else if (element.Id == "89")
-                   {
-                       color = "color-actinidos";
                    }
 
-                   if ((index>=90 && index<= 104) ||(index>=104 && index <= 143 ) )
+                   if (i < Model.Length)
                    {
-                       <div class="item @color">
-                           <p class="item-number">@element.Id</p>
-                           <h4 class="item-title">@element.Initials</h4>
-                           <p class="item-name">@element.Name</p>
+                       if ((i >= 90 && i <= 104) || (i >= 104 && i <= 143))
+                       {
+                           color = (i >= 90 && i <= 104) ? "color-Lantanidos" : "color-actinidos";
+                           <div class="item @color" id="element @Model[i].Id">
+                               <p class="item-number">@Model[i].Id || <span class="itemDelete" onclick="deleteElement('@Model[i].Id')">X</span></p>
+                               <h4 class="item-title">@Model[i].Initials</h4>
+                               <p class="item-name">@Model[i].Name</p>
+                           </div>
+                       }
+                   }
+                   else
+                   {
+                       <div class="item" style="background-color:gray;">
+
                        </div>
                    }
                }
@@ -149,5 +156,24 @@
             <span>Gases Nobles</span>
         </div>
     </div>
+    <script>
+
+        function deleteElement(Id) {
+            debugger;
+            const element = document.getElementById('element ' + Id);
+            const length = element.children.length
+            for (let i = 0; i < length; i++) {
+                let item = element.children[i];
+                if (i === (length - 1)) {
+                    element.children[0].remove();
+                } else {
+                    item.remove();
+                }
+
+            }
+            element.style.backgroundColor = "gray";
+        }
+
+    </script>
 </body>
 </html>

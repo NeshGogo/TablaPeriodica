@@ -15,9 +15,9 @@ namespace TablaPeriodica.Controllers
             return View(elementos);
         }
 
-        private List<Elemento> GetElementos()
+        private Elemento[] GetElementos()
         {
-            var elementos = new List<Elemento>
+            var elementos = new Elemento[]
             {
                 new Elemento{ Id="1", Name = "Hidrogeno",Initials="H",Category = CategorisEnum.OtrosNoMetales },
                 new Elemento{ Id="2", Name = "Helio",Initials="He",Category = CategorisEnum.GasesNobles },

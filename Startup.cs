@@ -50,7 +50,7 @@ namespace TablaPeriodica
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=TablaPeriodica}/{action=Index}/{id?}");
             });
         }
     }
