@@ -11,6 +11,7 @@ namespace TablaPeriodica.Models
         public string Name { get; set; }
         public string Initials { get; set; }
         public CategorisEnum Category { get; set; }
+        public int Orden { get; set; }
     }
 }
 

@@ -1,7 +1,8 @@
 ﻿@model TablaPeriodica.Models.Elemento[]
 @{
     Layout = null;
-    string color = "";
+    bool find = false;
+
 }
 
 <!DOCTYPE html>
@@ -19,97 +20,67 @@
     <div class="grid-container">
         @for (int i = 0; i < 90; i++)
         {
+            find = false;
 
-            if (i < Model.Length)
-            {
-                @switch (Model[i].Category)
-                {
-                    case CategorisEnum.Alcalinos:
-                        color = "color-alcalinos";
-                        break;
-                    case CategorisEnum.Alcalinoterreos:
-                        color = "color-alcalinoterreos";
-                        break;
-                    case CategorisEnum.BloqueD:
-                        color = "color-bloqueD";
-                        break;
-                    case CategorisEnum.Lantanidos:
-                        color = "color-Lantanidos";
-                        break;
-                    case CategorisEnum.Actinidos:
-                        color = "color-actinidos";
-                        break;
-                    case CategorisEnum.OtrosMetales:
-                        color = "color-otros-metales";
-                        break;
-                    case CategorisEnum.Metaloides:
-                        color = "color-metaloides";
-                        break;
-                    case CategorisEnum.OtrosNoMetales:
-                        color = "color-otros-no-metales";
-                        break;
-                    case CategorisEnum.Halogenos:
-                        color = "color-halogenos";
-                        break;
-                    case CategorisEnum.GasesNobles:
-                        color = "color-gases-nobles";
-                        break;
-                    default:
-                        color = "gray";
-                        break;
-                }
-
-                <div class="item @color" id="element @Model[i].Id">
-                    <p class="item-number">@Model[i].Id  || <span class="itemDelete" onclick="deleteElement('@Model[i].Id')">X</span></p>
-                    <h4 class="item-title">@Model[i].Initials</h4>
-                    <p class="item-name">@Model[i].Name</p>
-                </div>
-            }
-            else
-            {
-                <div class="item" style="background-color:gray;"></div>
-            }
-
-            if (i == 0)
+            if (i == 1)
             {
                 <di class="space-blank1">
                 </di>
             }
-            else if (i == 3 || i == 11)
+            else if (i == 4 || i == 12)
             {
                 <div class="space-blank2">
 
                 </div>
             }
 
+            for (int index = 0; index < Model.Length; index++)
+            {
+                if (i == (Model[index].Orden - 1))
+                {
+                    <div class="item @Model[index].Category" id="element @Model[index].Id">
+                        <p class="item-number">@Model[index].Id  || <span class="itemDelete" onclick="deleteElement('@Model[index].Id')">X</span></p>
+                        <h4 class="item-title">@Model[index].Initials</h4>
+                        <p class="item-name">@Model[index].Name</p>
+                    </div>
+                    find = true;
+                }
+            }
+
+            if (!find)
+            {
+                <div class="item" style="background-color:gray;"></div>
+
+            }
         }
     </div>
     <br /> <br />
            <div class="grid-container">
                @for (int i = 90; i < 120; i++)
                {
+                   find = false;
+
                    if (i == 90)
                    {
                        <div class="space-blank-second-grid"></div>
                    }
 
-                   if (i < Model.Length)
+                   for (int index = 0; index < Model.Length; index++)
                    {
-                       if ((i >= 90 && i <= 104) || (i >= 104 && i <= 143))
+                       if (i == (Model[index].Orden - 1))
                        {
-                           color = (i >= 90 && i <= 104) ? "color-Lantanidos" : "color-actinidos";
-                           <div class="item @color" id="element @Model[i].Id">
-                               <p class="item-number">@Model[i].Id || <span class="itemDelete" onclick="deleteElement('@Model[i].Id')">X</span></p>
-                               <h4 class="item-title">@Model[i].Initials</h4>
-                               <p class="item-name">@Model[i].Name</p>
+                           <div class="item @Model[index].Category" id="element @Model[index].Id">
+                               <p class="item-number">@Model[index].Id  || <span class="itemDelete" onclick="deleteElement('@Model[index].Id')">X</span></p>
+                               <h4 class="item-title">@Model[index].Initials</h4>
+                               <p class="item-name">@Model[index].Name</p>
                            </div>
+                           find = true;
                        }
                    }
-                   else
-                   {
-                       <div class="item" style="background-color:gray;">
 
-                       </div>
+                   if (!find)
+                   {
+                       <div class="item" style="background-color:gray;"></div>
                    }
                }
            </div>
@@ -119,45 +90,44 @@
         <div class="leyenda-item leyenda-item-header1 color-header-leyendas">
             <span>Metales</span>
         </div>
-        <div class="leyenda-item leyenda-item-header2 color-metaloides">
+        <div class="leyenda-item leyenda-item-header2 Metaloides">
             <span>Metaloides</span>
         </div>
         <div class="leyenda-item leyenda-item-header3 color-header-leyendas">
             <span>No Metales</span>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2 color-alcalinos">
+        <div class="leyenda-item leyenda-item-column-span-2 Alcalinos">
             <span>Alcalinos</span>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2 color-alcalinoterreos">
+        <div class="leyenda-item leyenda-item-column-span-2 Alcalinoterreos">
             <span>Alcalinoterreos</span>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2 color-bloqueD" style="line-height:25px;">
+        <div class="leyenda-item leyenda-item-column-span-2 BloqueD" style="line-height:25px;">
             <span>Metales de Transicion / Bloque D</span>
         </div>
         <div class="leyenda-item leyenda-item-column-span-2" style="overflow: hidden; line-height: 30px;">
-            <div style="border-bottom: 1px solid black;" class="color-Lantanidos">
+            <div style="border-bottom: 1px solid black;" class="Lantanidos">
                 <span>Lantanidos</span>
             </div>
-            <div class="color-actinidos">
+            <div class="Actinidos">
                 <span>Actinodos</span>
             </div>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2 color-otros-metales">
+        <div class="leyenda-item leyenda-item-column-span-2 OtrosMetales">
             <span>Otros Metales</span>
         </div>
 
-        <div class="leyenda-item leyenda-item-column-span-2 color-otros-no-metales">
+        <div class="leyenda-item leyenda-item-column-span-2 OtrosNoMetales">
             <span>Otros No Metales</span>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2 color-halogenos">
+        <div class="leyenda-item leyenda-item-column-span-2 Halogenos">
             <span>Halogenos</span>
         </div>
-        <div class="leyenda-item leyenda-item-column-span-2 color-gases-nobles">
+        <div class="leyenda-item leyenda-item-column-span-2 GasesNobles">
             <span>Gases Nobles</span>
         </div>
     </div>
     <script>
-
         function deleteElement(Id) {
             debugger;
             const element = document.getElementById('element ' + Id);
